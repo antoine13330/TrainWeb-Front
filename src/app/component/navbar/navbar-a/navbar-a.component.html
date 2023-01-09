@@ -1,0 +1,23 @@
+<nav id="navbar-a">
+    <div id="nav-logo" [routerLink]="'/accueil'">
+        <img [src]="logoUrl" alt="TrainWeb Logo"/>
+    </div>
+    <span id="links-wrapper">
+        <ng-container *ngFor="let link of navLinks">
+            <a [routerLink]="link.url" routerLinkActive="router-link-active" >
+                {{link.name}}
+            </a>
+        </ng-container>
+    </span>
+
+    <ng-container>
+        <button nz-button [routerLink]="'sign/in'">
+            Connexion
+        </button>
+
+        <button nz-button [routerLink]="'sign/up'">
+            Enregistrement
+        </button>
+    </ng-container>
+</nav>
+

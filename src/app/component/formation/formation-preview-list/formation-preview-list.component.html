@@ -1,0 +1,12 @@
+<nz-list nzItemLayout="horizontal">
+  <ng-container *ngFor="let item of formations">
+    <nz-list-item  (click)="onChooseFormation(item)">
+      <nz-list-item-meta>
+        <nz-list-item-meta-title>
+          <span>{{ item.name }}</span>
+        </nz-list-item-meta-title>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-container>
+  <nz-list-empty *ngIf="formations.length === 0"></nz-list-empty>
+</nz-list>

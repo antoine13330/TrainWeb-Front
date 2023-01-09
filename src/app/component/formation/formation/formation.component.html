@@ -1,0 +1,39 @@
+<section class="component-content" id="formation-component">
+  <div class="toolbar" id="formation-toolbar">
+    <h3>{{ formation.name }}</h3>
+    <nz-progress [nzPercent]="formation.progress" nzType="circle" [nzWidth]="25"></nz-progress>
+  </div>
+  <div id="formation-main-wrapper">
+    <ul nz-menu nzMode="inline" [style.Width.%]="20">
+      <li
+        *ngFor="let chap of formation.chapitres"
+        nz-submenu
+        [nzTitle]="chap.name"
+        nzIcon="book"
+      >
+        <ul>
+          <li
+            *ngFor="let exo of chap.exos"
+            nz-menu-item
+            (click)="onSelectExo(exo)"
+          >
+            {{ exo.name }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div id="formation-component-content">
+      <ng-container *ngIf="choosenExo; else content">
+        <tw-formation-content-panel
+          [type]="'exo'"
+          [item]="choosenExo"
+          [mode]="'user'"
+        >
+        </tw-formation-content-panel>
+      </ng-container>
+      <ng-template #content> 
+        Veuillez choisir un exercice 
+      </ng-template>
+    </div>
+  </div>
+</section>

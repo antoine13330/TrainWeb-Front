@@ -1,0 +1,9 @@
+<section class="page" id="page-formation-preview">
+    <ng-container *ngIf="displayState === 'loaded'">
+        <h2> {{ openedFormation!.name }} </h2>
+        <p> {{ openedFormation!.description }} </p>
+
+        <button (click)="onStartFormation()">Debuter la formation </button>
+        
+    </ng-container>
+</section>

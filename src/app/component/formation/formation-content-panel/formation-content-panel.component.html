@@ -1,0 +1,25 @@
+<div [ngSwitch]="type">
+    <div *ngSwitchCase="'exo'">
+        <span [ngSwitch]="getViewByRole()">
+            <div *ngSwitchCase="0">
+                <!-- user mode -->
+                <div>
+                    <textarea disabled nz-input [(ngModel)]="item.content"></textarea>
+                </div>
+                <input nz-input type="text" [(ngModel)]="item.answer"/>
+            </div>
+            <div *ngSwitchCase="1">
+                <!-- edit mode -->
+                <div>
+                    <textarea nz-input [(ngModel)]="item.content"></textarea>
+                </div>
+            </div>
+            <div *ngSwitchDefault>
+                <!-- Unknown mode -->
+            </div>
+        </span>
+    </div>
+    <p *ngSwitchDefault>
+        <!-- Unknow type -->
+    </p>
+</div>

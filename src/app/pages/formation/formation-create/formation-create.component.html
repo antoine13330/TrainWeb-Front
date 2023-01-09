@@ -1,0 +1,79 @@
+<section class="page" id="page-formation-create">
+  <div class="toolbar" id="toolbar-formation-create">
+    <input
+      nz-input
+      placeholder="Nom de la formation..."
+      [(ngModel)]="creatingFormation.name"
+    />
+    <button nz-button (click)="onAddFormation()">Ajouter la formation</button>
+    <button nz-button (click)="onAddChapitre()">Ajouter un chapitre</button>
+  </div>
+
+  <div id="main-wrapper">
+    <ul id="formation-create-menu" nz-menu nzMode="inline" [style.Width.%]="20">
+      <li
+        *ngFor="let chap of creatingFormation.chapitres"
+        nz-submenu
+        [nzTitle]="chap.name"
+        nzIcon="book"
+      >
+        <ul>
+          <li nz-menu-item nzDisabled class="add-exo-btn">
+            <nz-button-group>
+              <button
+                nz-button
+                nz-tooltip
+                nzTooltipTitle="Ajout exercice"
+                nzTooltipPlacement="top"
+                (click)="onAddExo(chap)"
+              >
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+              </button>
+              <button
+                nz-popconfirm
+                nzPopconfirmTitle="Confirmer la suppression du chapitre ?"
+                (nzOnConfirm)="onDeleteChapitre(chap)"
+                nzPopconfirmPlacement="right"
+                nzTooltipTitle="Suppresion du chapitre"
+                nzTooltipPlacement="top"
+                nz-button
+                nz-tooltip
+                nzDanger
+              >
+                <i nz-icon nzType="delete" nzTheme="fill"></i>
+              </button>
+            </nz-button-group>
+          </li>
+
+          <li
+            *ngFor="let exo of chap.exos"
+            nz-menu-item
+            class="list-item-w-icon"
+            (click)="onSelectExo(exo)"
+          >
+            <span> {{ exo.name }} </span>
+            <button
+              nz-button
+              nzDanger
+              nzGhost
+              nz-tooltip
+              nzTooltipTitle="Supprimer l'exercice"
+              nzTooltipPlacement="right"
+              nzType="dashed"
+              (click)="onDeleteExo(exo, chap)"
+            >
+              <span nz-icon nzType="delete" nzTheme="outline"></span>
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ng-container *ngIf="selectedExo">
+      <tw-formation-content-panel
+        [item]="selectedExo"
+        [type]="'exo'"
+        [mode]="'teacher'"
+      ></tw-formation-content-panel>
+    </ng-container>
+  </div>
+</section>
