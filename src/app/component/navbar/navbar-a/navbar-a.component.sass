@@ -1,25 +1,46 @@
 #navbar-a
     display : flex
     align-items: center
-    #nav-logo 
+    background-color: #fff8ef
+    #nav-button
+      display : flex
+      justify-content: right
+      margin-left: 46%
+      button
+        margin: 0.5%
+        color: #565656
+        background-color: #fff8ef
+        border-radius: 12px
+        border: none
+        font-weight: 600
+      button:hover
+        background-color: #02020207
+      #sign-up
+        color: #fff8ef
+        background-color: #D34C89
+      #sign-up:hover
+        background-color: #de74a4
+    #nav-logo
         display: flex
         height: 60px
         padding: 0 10px 0 10px
         cursor: pointer
-        img 
+        img
             margin : auto 0 auto 0
             height: 50%
             object-fit: contain
     #links-wrapper
         display: flex
-        a 
+        a
+            color: #565656
+            font-weight: 600
             padding: 5px 10px 5px 10px
             margin: 0 5px 0 5px
             border-radius : 5px
             transition: all .2s ease-in-out
             user-select: none
-            -webkit-user-drag: none 
-        a:hover 
+            -webkit-user-drag: none
+        a:hover
             background: #02020207
         a:focus
             background: #0202020c
