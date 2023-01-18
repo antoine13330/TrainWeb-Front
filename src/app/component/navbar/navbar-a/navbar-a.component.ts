@@ -11,7 +11,7 @@ export class NavbarAComponent implements OnInit {
   public navLinks : NavLink[];
   public logoUrl : string = '/assets/img/logo/trainweb.png';
 
-  constructor(private navlinksService : NavlinksService) { 
+  constructor(private navlinksService : NavlinksService) {
     this.navLinks = this.navlinksService.links;
   }
 
