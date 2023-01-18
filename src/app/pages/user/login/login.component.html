@@ -45,21 +45,21 @@
       <button nz-button nzType="primary" nzShape="round">
         <span nz-icon nzType="download"></span>
         Connexion
-      </button><br/>
+      </button><br/><br/>
       Ou
-      <a [routerLink]="['/sign/up']">inscription</a>
+      <a [routerLink]="['/sign/up']" class="login-switch">inscription</a>
     </form>
 
     <form nz-form class="register" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()" *ngSwitchCase="'up'">
       <h1>Inscription</h1><br/><br/>
       <nz-form-item>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Rentre ton nom d'utilisateur">
-          <input nz-input id="nickname" formControlName="nickname" placeholder="Nom d'utilisateur" />
+          <input nz-input class="input-sign-in" id="nickname" formControlName="nickname" placeholder="Nom d'utilisateur" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Cette email n'est pas valide">
-          <input nz-input formControlName="email" id="email" placeholder="E-mail"
+          <input nz-input class="input-sign-in" formControlName="email" id="email" placeholder="E-mail"
           />
         </nz-form-control>
       </nz-form-item>
@@ -68,17 +68,17 @@
           <input
             nz-input
             type="password"
+            class="input-sign-in"
             id="password"
             formControlName="password"
             (ngModelChange)="updateConfirmValidator()"
             placeholder="Mot de passe"
-
           />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" placeholder="Confirmation mot de passe"/>
+          <input nz-input class="input-sign-in" type="password" formControlName="checkPassword" id="checkPassword" placeholder="Confirmation mot de passe"/>
           <ng-template #errorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">Confirme ton mot de passe</ng-container>
             <ng-container *ngIf="control.hasError('confirm')">
@@ -93,7 +93,7 @@
         </nz-form-control>
       </nz-form-item>
       Ou
-      <a [routerLink]="['/sign/in']">Connexion</a>
+      <a [routerLink]="['/sign/in']" class="login-switch">Connexion</a>
     </form>
     <p *ngSwitchDefault>Erreur</p>
 </section>
