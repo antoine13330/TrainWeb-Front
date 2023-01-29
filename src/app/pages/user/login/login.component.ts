@@ -9,10 +9,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public pageMode : 'in' | 'out' = 'in';
+  public logoUrl : string = '/assets/img/logo/trainweb.png';
+  public wave : string = '/assets/img/logo/wave.svg';
+
   constructor(
     private route : ActivatedRoute,
     private fb: FormBuilder
-  ) { 
+  ) {
     this.route.params.subscribe( pr => {
       this.pageMode = pr['mode'];
     })
