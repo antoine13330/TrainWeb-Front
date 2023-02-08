@@ -37,7 +37,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { CapitalizePipe } from './_pipes/string/capitalize.pipe';
+import { MesFormationsComponent } from './component/formation/mes-formations/mes-formations.component';
+import { NavbarBComponent } from './component/navbar/navbar-b/navbar-b.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ registerLocaleData(fr);
     FormationContentPanelComponent,
     FormationPreviewPageComponent,
     FormationPageComponent,
-    CapitalizePipe,
+    MesFormationsComponent,
+    NavbarBComponent,
   ],
   imports: [
     BrowserModule,

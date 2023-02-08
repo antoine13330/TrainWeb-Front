@@ -1,9 +1,5 @@
-
+<tw-navbar-b></tw-navbar-b>
 <section class="page" id="page-sign" [ngSwitch]="pageMode">
-  <div class="link-backto"  [routerLink]="'/accueil'">
-    <span nz-icon nzType="rollback" nzTheme="outline"></span> Retourner sur le site
-  </div>
-  <nz-card [nzTitle]="pageMode === 'in' ? 'Connexion' : 'Enregistrement'">
     <form
       *ngSwitchCase="'in'"
       nz-form
@@ -11,26 +7,27 @@
       class="login-form"
       (ngSubmit)="submitForm()"
     >
+    <h1>Se connecter</h1><br/><br/>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control nzErrorTip="Rentre ton nom d'utilisateur">
           <nz-input-group nzPrefixIcon="user">
             <input
               type="text"
               nz-input
               formControlName="userName"
-              placeholder="Username"
+              placeholder="Nom d'utilisateur"
             />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control nzErrorTip="Rentre ton mot de passe">
           <nz-input-group nzPrefixIcon="lock">
             <input
               type="password"
               nz-input
               formControlName="password"
-              placeholder="Password"
+              placeholder="Mot de passe"
             />
           </nz-input-group>
         </nz-form-control>
@@ -38,111 +35,66 @@
       <div nz-row class="login-form-margin">
         <div nz-col [nzSpan]="12">
           <label nz-checkbox formControlName="remember">
-            <span>Remember me</span>
+            <span>Se souvenir de moi</span>
           </label>
         </div>
         <div nz-col [nzSpan]="12">
-          <a class="login-form-forgot">Forgot password</a>
+          <a class="login-form-forgot">Mot de passe oublié</a>
         </div>
       </div>
-      <button
-        nz-button
-        class="login-form-button login-form-margin"
-        [nzType]="'primary'"
-      >
-        Log in
-      </button>
-      Or
-      <a [routerLink]="['/sign/up']">register now!</a>
+      <button nz-button nzType="primary" nzShape="round">
+        <span nz-icon nzType="download"></span>
+        Connexion
+      </button><br/><br/>
+      Ou
+      <a [routerLink]="['/sign/up']" class="login-switch">inscription</a>
     </form>
 
     <form nz-form class="register" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()" *ngSwitchCase="'up'">
+      <h1>Inscription</h1><br/><br/>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-          <input nz-input formControlName="email" id="email" />
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Rentre ton nom d'utilisateur">
+          <input nz-input class="input-sign-in" id="nickname" formControlName="nickname" placeholder="Nom d'utilisateur" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Pwd</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
-          <input
-            nz-input
-            type="password"
-            id="password"
-            formControlName="password"
-            (ngModelChange)="updateConfirmValidator()"
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Cette email n'est pas valide">
+          <input nz-input class="input-sign-in" formControlName="email" id="email" placeholder="E-mail"
           />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Rentre ton mot de passe">
+          <input
+            nz-input
+            type="password"
+            class="input-sign-in"
+            id="password"
+            formControlName="password"
+            (ngModelChange)="updateConfirmValidator()"
+            placeholder="Mot de passe"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+          <input nz-input class="input-sign-in" type="password" formControlName="checkPassword" id="checkPassword" placeholder="Confirmation mot de passe"/>
           <ng-template #errorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Confirme ton mot de passe</ng-container>
             <ng-container *ngIf="control.hasError('confirm')">
-              Two passwords that you enter is inconsistent!
+              Mots de passe incohérents
             </ng-container>
           </ng-template>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <nz-form-label
-          [nzSm]="6"
-          [nzXs]="24"
-          nzFor="nickname"
-          nzRequired
-        >
-          <span>Pseudo</span>
-        </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
-          <input nz-input id="nickname" formControlName="nickname" />
-        </nz-form-control>
-      </nz-form-item>
-      <!-- <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
-         <nz-form-control
-          [nzSm]="14"
-          [nzXs]="24"
-          [nzValidateStatus]="validateForm.controls['phoneNumber']"
-          nzErrorTip="Please input your phone number!"
-        >
-          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-            <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
-                <nz-option nzLabel="+86" nzValue="+86"></nz-option>
-                <nz-option nzLabel="+87" nzValue="+87"></nz-option>
-              </nz-select>
-            </ng-template>
-            <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item> -->
-      <!-- <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="website" nzRequired>Website</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input website!">
-          <input nz-input id="website" formControlName="website" placeholder="website" />
-        </nz-form-control>
-      </nz-form-item> -->
-      <!-- <nz-form-item nz-row class="register-area">
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <label nz-checkbox formControlName="agree">
-            <span>
-              I have read the
-              <a>agreement</a>
-            </span>
-          </label>
-        </nz-form-control>
-      </nz-form-item> -->
       <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <button nz-button nzType="primary">Register</button>
+          <button nz-button nzType="primary">Inscription</button>
         </nz-form-control>
       </nz-form-item>
-      Or
-      <a [routerLink]="['/sign/in']">Sign in!</a>
+      Ou
+      <a [routerLink]="['/sign/in']" class="login-switch">Connexion</a>
     </form>
     <p *ngSwitchDefault>Erreur</p>
-  </nz-card>
 </section>
+<img id="wave-foot" [src]="wave" alt="TrainWeb Logo"/>

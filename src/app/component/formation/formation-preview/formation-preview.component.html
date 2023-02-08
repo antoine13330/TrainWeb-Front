@@ -1,9 +1,10 @@
 <section class="page" id="page-formation-preview">
     <ng-container *ngIf="displayState === 'loaded'">
-        <h2> {{ openedFormation!.name }} </h2>
-        <p> {{ openedFormation!.description }} </p>
+        <div id="container">
+            <h2 id="nom"> {{ openedFormation!.name }} </h2>
+            <p> {{ openedFormation!.description }} </p>
 
-        <button (click)="onStartFormation()">Debuter la formation </button>
-        
+            <button (click)="onStartFormation()">Debuter la formation </button>
+        </div>
     </ng-container>
 </section>

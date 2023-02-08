@@ -1,3 +1,28 @@
 <section class="page" id="page-accueil">
-    <tw-formation-preview-list></tw-formation-preview-list>
+  <div id="container">
+    <h2 id="trainweb">TRAINWEB</h2>
+    <h3 id="slogan">Votre nouveau centre de formation</h3>
+  </div>
+  <div id="filters">
+    <div id="recherche">
+      <input placeholder="Rechercher une formation ...">
+      <button>
+        <span nz-icon nzType="search" nzTheme="outline"></span>
+      </button>
+    </div>
+    <div id="icons">
+      <button>
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+      </button>
+      <button>
+        <span nz-icon nzType="filter" nzTheme="outline"></span>
+      </button>
+    </div>
+  </div>
+  <tw-formation-preview-list></tw-formation-preview-list>
+  <div id="up">
+    <button>
+      <a href="#icons"><span nz-icon nzType="up" nzTheme="outline"></span></a>
+    </button>
+  </div>
 </section>
