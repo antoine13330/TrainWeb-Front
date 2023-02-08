@@ -1,3 +1,4 @@
+@import "~src/styles.sass"
 #navbar-a
     display : flex
     align-items: center
@@ -8,7 +9,7 @@
       margin-left: 46%
       button
         margin: 0.5%
-        color: #565656
+        color: $secondary
         background-color: #fff8ef
         border-radius: 12px
         border: none
@@ -17,9 +18,9 @@
         background-color: #02020207
       #sign-up
         color: #fff8ef
-        background-color: #D34C89
+        background-color: $primary-color
       #sign-up:hover
-        background-color: #de74a4
+        background-color: #ffc67f
     #nav-logo
         display: flex
         height: 60px
@@ -32,7 +33,7 @@
     #links-wrapper
         display: flex
         a
-            color: #565656
+            color: $secondary
             font-weight: 600
             padding: 5px 10px 5px 10px
             margin: 0 5px 0 5px
