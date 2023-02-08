@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
-const AUTH_API = 'http://localhost:3000/api/user/';
+const AUTH_API = 'http://localhost:3000/users/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,25 +16,27 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signin',
+      AUTH_API + 'login',
       {
-        username,
-        password,
+        user: {
+          email: username,
+          password: password
+        }  
       },
       httpOptions
-    );
+    ).pipe(catchError(err => throwError(()=> err)))
   }
 
   register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signup',
+      AUTH_API + 'create',
       {
         username,
         email,
         password,
       },
       httpOptions
-    );
+    ).pipe(catchError(err => throwError(() => err)))
   }
 
   logout(): Observable<any> {

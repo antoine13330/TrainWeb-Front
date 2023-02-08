@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'tw-login',
@@ -11,10 +12,14 @@ export class LoginComponent implements OnInit {
   public pageMode : 'in' | 'out' = 'in';
   public logoUrl : string = '/assets/img/logo/trainweb.png';
   public wave : string = '/assets/img/logo/wave.svg';
+  public validateForm!: FormGroup ;
+  public registerForm!: FormGroup ;
+
 
   constructor(
     private route : ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
   ) {
     this.route.params.subscribe( pr => {
       this.pageMode = pr['mode'];
@@ -23,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true]
     });
@@ -41,8 +46,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  validateForm!: FormGroup;
-  registerForm!: FormGroup;
   updateConfirmValidator(): void {
     /** wait for refresh value */
     Promise.resolve().then(() => this.registerForm.controls['checkPassword'].updateValueAndValidity());
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
+      this.authService.login(this.validateForm.get('email')?.value, this.validateForm.get('password')?.value);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
