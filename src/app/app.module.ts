@@ -38,6 +38,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NavbarBComponent } from './component/navbar/navbar-b/navbar-b.component';
+import { RegisterComponent } from './pages/user/register/register/register.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ registerLocaleData(fr);
     FormationPreviewPageComponent,
     FormationPageComponent,
     NavbarBComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
