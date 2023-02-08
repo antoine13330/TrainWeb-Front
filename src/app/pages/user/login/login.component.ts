@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import {AuthService} from "../../../_services/auth.service";
 
 @Component({
   selector: 'tw-login',
@@ -11,10 +12,17 @@ export class LoginComponent implements OnInit {
   public pageMode : 'in' | 'out' = 'in';
   public logoUrl : string = '/assets/img/logo/trainweb.png';
   public wave : string = '/assets/img/logo/wave.svg';
+  username = '';
+  password = '';
+  email = '';
+
+
 
   constructor(
     private route : ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private Router: Router
   ) {
     this.route.params.subscribe( pr => {
       this.pageMode = pr['mode'];
@@ -32,12 +40,7 @@ export class LoginComponent implements OnInit {
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-      phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      captcha: [null, [Validators.required]],
-      agree: [false]
+      username: [null, [Validators.required]]
     });
   }
 
@@ -56,9 +59,16 @@ export class LoginComponent implements OnInit {
     return {};
   };
 
+
+
+
+
+
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      this.authService.register(this.registerForm.value).subscribe(result=>{
+        this.Router.navigate(['sign/in'])
+      })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -70,7 +80,8 @@ export class LoginComponent implements OnInit {
   }
   submitRegisterForm(): void {
     if (this.registerForm.valid) {
-      console.log('submit', this.registerForm.value);
+      this.authService.register(this.registerForm.value).subscribe(result=>{
+        this.Router.navigate(['sign/in'])})
     } else {
       Object.values(this.registerForm.controls).forEach(control => {
         if (control.invalid) {
