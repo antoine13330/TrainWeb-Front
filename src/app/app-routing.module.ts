@@ -6,6 +6,7 @@ import { FormationPreviewPageComponent } from './pages/formation/formation-previ
 import { FormationPageComponent } from './pages/formation/formation/formation.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import {MesFormationsComponent} from "./component/formation/mes-formations/mes-formations.component";
+import {RegisterComponent} from "./pages/user/register/register.component";
 const routes: Routes = [
   { path : '' , component : AccueilPageComponent},
   { path : 'accueil' , component : AccueilPageComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path : 'formationCreate' , component : FormationCreatePageComponent},
   { path : 'formationUser' , component : MesFormationsComponent},
   { path : 'formation' , component : FormationPageComponent},
-  { path : 'sign/:mode' , component : LoginComponent },
+  { path : 'sign/in' , component : LoginComponent },
+  { path : 'sign/up' , component : RegisterComponent }
 ];
 
 @NgModule({

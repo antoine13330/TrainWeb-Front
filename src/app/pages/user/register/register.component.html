@@ -1,0 +1,53 @@
+<tw-navbar-b></tw-navbar-b>
+<section class="page-sign" id="page-sign">
+    <form nz-form
+          class="register-form"
+          [formGroup]="registerForm"
+          (ngSubmit)="submitRegisterForm()">
+
+      <h1>Inscription</h1><br/><br/>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Rentre ton nom d'utilisateur">
+          <input nz-input class="input-sign-in" id="username" formControlName="username" placeholder="Nom d'utilisateur" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Cette email n'est pas valide">
+          <input nz-input class="input-sign-in" formControlName="email" id="email" placeholder="E-mail"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Rentre ton mot de passe">
+          <input
+            nz-input
+            type="password"
+            class="input-sign-in"
+            id="password"
+            formControlName="password"
+            (ngModelChange)="updateConfirmValidator()"
+            placeholder="Mot de passe"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+          <input nz-input class="input-sign-in" type="password" formControlName="checkPassword" id="checkPassword" placeholder="Confirmation mot de passe"/>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Confirme ton mot de passe</ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">
+              Mots de passe incohérents
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" type="submit">Inscription</button>
+        </nz-form-control>
+      </nz-form-item>
+      Ou
+      <a [routerLink]="['/sign/in']" class="login-switch">Connexion</a>
+    </form>
+</section>
+<img id="wave-foot" [src]="wave" alt="TrainWeb Logo"/>
