@@ -20,10 +20,4 @@ export class NavbarAComponent implements OnInit {
 
 
 
-
-
-
-
-
-
 }
