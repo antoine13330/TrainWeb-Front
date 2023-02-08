@@ -1,3 +1,4 @@
+import { registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chapitre } from 'src/app/_models/Chapitres/Chapitre';
@@ -12,7 +13,7 @@ import { fakeFormation } from 'src/assets/fake-db/Formations/formation';
   styleUrls: ['./formation-create.component.sass']
 })
 export class FormationCreatePageComponent implements OnInit {
-  selectedExo? : Exo;  
+  selectedExo? : Exo;
   creatingFormation : Formation = {
     id: 0, // sql
     name: '',
@@ -21,14 +22,19 @@ export class FormationCreatePageComponent implements OnInit {
     progress: 0,
     chapitres: []
   }
+  creationChapitre : Chapitre = {
+    id: 0, // sql
+    name: 'Chapitre 1',
+    exos: []
+  }
   constructor(
     private notificationService : NotificationService,
     private router : Router
-    ) {
-      this.onAddChapitre();
-    }
+    ) {  }
 
   ngOnInit(): void {
+    this.onAddChapitre();
+
   }
   /*#region formation*/
   onAddFormation() {
@@ -63,7 +69,7 @@ export class FormationCreatePageComponent implements OnInit {
     const idChapitre = this.creatingFormation.chapitres.length + 1;
     this.creatingFormation.chapitres.push({
       id: 0,
-      name: `Chapitre ${idChapitre}`,
+      name:  `Chapitre ${idChapitre}`,
       exos: [{
         id: 1,
         name: `Exo 1`,
@@ -81,6 +87,7 @@ export class FormationCreatePageComponent implements OnInit {
       content : '',
       answer : ''
     }  as Exo )
+
   }
 
   onSelectExo( exo : Exo ) {
@@ -90,17 +97,25 @@ export class FormationCreatePageComponent implements OnInit {
   onDeleteChapitre( chapitre : Chapitre ) {
     this.creatingFormation.chapitres.splice( this.creatingFormation.chapitres.indexOf(chapitre) , 1 );
     this.creatingFormation.chapitres.forEach( ( chapitre , index ) => {
-      chapitre.name = `Exo ${index+1}`;
-    }); 
-  } 
+      chapitre.name = `Chapitre ${index+1}`;
+    });
+  }
 
   onDeleteExo( exo : Exo , chapitre :  Chapitre ) {
     chapitre.exos.splice( chapitre.exos.indexOf(exo) , 1 );
-    chapitre.exos.forEach( ( exo , index ) => {
-      exo.name = `Exo ${index+1}`;
-    }); 
-  } 
+  }
 
+  onRenameExo(exo: Exo){
+     exo.editMode= true;
+  }
+  onValideRenameExo(exo: Exo){
+    exo.editMode= false;
+    exo.name = exo.tempName!;
+    exo.tempName = '';
+  }
+  onCancelRenameExo(exo: Exo){
+    exo.editMode= false;
+  }
 
+  }
 
-}

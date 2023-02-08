@@ -5,8 +5,9 @@
       placeholder="Nom de la formation..."
       [(ngModel)]="creatingFormation.name"
     />
-    <button nz-button (click)="onAddFormation()">Ajouter la formation</button>
     <button nz-button (click)="onAddChapitre()">Ajouter un chapitre</button>
+
+
   </div>
 
   <div id="main-wrapper">
@@ -14,7 +15,7 @@
       <li
         *ngFor="let chap of creatingFormation.chapitres"
         nz-submenu
-        [nzTitle]="chap.name"
+        [nzTitle]="chap.name|capitalize"
         nzIcon="book"
       >
         <ul>
@@ -51,19 +52,70 @@
             class="list-item-w-icon"
             (click)="onSelectExo(exo)"
           >
+          <div>
+
+            <ng-container
+            *ngIf="!exo.editMode; else editMode"
+            >
             <span> {{ exo.name }} </span>
-            <button
+
+              <button
               nz-button
               nzDanger
               nzGhost
               nz-tooltip
               nzTooltipTitle="Supprimer l'exercice"
-              nzTooltipPlacement="right"
+              nzTooltipPlacement="left"
               nzType="dashed"
               (click)="onDeleteExo(exo, chap)"
             >
               <span nz-icon nzType="delete" nzTheme="outline"></span>
             </button>
+
+            <button
+              nz-button
+
+              nz-tooltip
+              :nzTooltipTitle="renomer l'exercice"
+              nzTooltipPlacement="right"
+              nzType="default"
+              (click)="onRenameExo(exo)"
+
+            >
+              <span nz-icon nzType="edit" nzTheme="outline"></span>
+            </button>
+          </ng-container>
+          <ng-template #editMode>
+            <input type="text" [(ngModel)]="exo.tempName" nz-input
+            class="rename-input" placeholder="Renomer :"
+            />
+            <button
+            nz-button
+
+            nz-tooltip
+            :nzTooltipTitle="Anuler la modification"
+            nzTooltipPlacement="left"
+            nzType="default"
+            (click)="onCancelRenameExo(exo)"
+
+          >
+            <span nz-icon nzType="close" nzTheme="outline"></span>
+          </button>
+            <button
+            nz-button
+
+            nz-tooltip
+            :nzTooltipTitle="Renomer l'exercice"
+            nzTooltipPlacement="right"
+            nzType="default"
+            (click)="onValideRenameExo(exo)"
+
+          >
+            <span nz-icon nzType="check" nzTheme="outline"></span>
+          </button>
+          </ng-template>
+
+          </div>
           </li>
         </ul>
       </li>
@@ -75,5 +127,6 @@
         [mode]="'teacher'"
       ></tw-formation-content-panel>
     </ng-container>
+    <button nz-button (click)="onAddFormation()">Ajouter la formation</button>
   </div>
 </section>
