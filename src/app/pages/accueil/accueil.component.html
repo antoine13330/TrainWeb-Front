@@ -2,34 +2,27 @@
   <div id="container">
     <h2 id="trainweb">TRAINWEB</h2>
     <h3 id="slogan">Votre nouveau centre de formation</h3>
+  </div>
+  <div id="filters">
     <div id="recherche">
       <input placeholder="Rechercher une formation ...">
       <button>
         <span nz-icon nzType="search" nzTheme="outline"></span>
       </button>
     </div>
-
-
-
-    <!--
-    <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
-    </nz-input-group>
-    <ng-template #suffixIconSearch>
-      <span nz-icon nzType="search"></span>
-    </ng-template>
-    -->
-
+    <div id="icons">
+      <button>
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+      </button>
+      <button>
+        <span nz-icon nzType="filter" nzTheme="outline"></span>
+      </button>
+    </div>
   </div>
-  <div id="icons">
+  <tw-formation-preview-list></tw-formation-preview-list>
+  <div id="up">
     <button>
-      <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
-    </button>
-    <button>
-      <span nz-icon nzType="filter" nzTheme="outline"></span>
+      <a href="#icons"><span nz-icon nzType="up" nzTheme="outline"></span></a>
     </button>
   </div>
-
-
-    <tw-formation-preview-list></tw-formation-preview-list>
 </section>
