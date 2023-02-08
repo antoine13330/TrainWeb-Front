@@ -1,14 +1,4 @@
 @import "~src/styles.sass"
-#icons
-  display: flex
-  justify-content: right
-  padding: 2%
-  button
-    background-color: $primary-background
-    border-radius: 28px
-    border: none
-    cursor: pointer
-    padding: 0.5%
 #container
   display: flex
   justify-content: center
@@ -23,6 +13,13 @@
   font-weight: 600
   color: $secondary
   font-size: 25px
+
+#filters
+  position : relative
+  display: flex
+  justify-content: center
+  align-items : center
+  flex-direction: row
 #recherche
   margin-top: 1.5%
   padding: 1%
@@ -43,5 +40,29 @@
     border-radius: 28px
     border: none
     cursor: pointer
-
-
+#icons
+  position: absolute
+  right: calc(4vw + 8%)
+  top: 0
+  display: flex
+  justify-content: right
+  padding: 2%
+  button
+    background-color: $primary-background
+    border-radius: 28px
+    font-size: 18px
+    border: none
+    cursor: pointer
+    padding: 10px
+#up
+  position: absolute
+  display: flex
+  justify-content: right
+  padding: 2%
+  button
+    background-color: $secondary
+    border-radius: 28px
+    font-size: 18px
+    border: none
+    cursor: pointer
+    padding: 10px
