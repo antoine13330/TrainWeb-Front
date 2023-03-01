@@ -10,19 +10,22 @@ export class NavlinksService {
     {
       name : 'Accueil',
       url : '/accueil',
-      authorization : 0
+      authorization : 0,
+      isAuthorized : false
     } ,
 
     {
       name : 'Créer une formation',
       url : '/formationCreate',
-      authorization : 1
+      authorization : 1,
+      isAuthorized : false
     } ,
 
     {
       name : 'Mes formations',
       url : '/formationUser',
-      authorization : 0
+      authorization : 1,
+      isAuthorized : false
     } ,
   ]
   constructor() { }

@@ -2,6 +2,7 @@
 <section class="page" id="page-sign">
     <form
       [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
       class="login-form"
     >
     <h1>Se connecter</h1><br/><br/>
@@ -9,9 +10,10 @@
         <nz-form-control nzErrorTip="Rentre ton nom d'utilisateur">
           <nz-input-group nzPrefixIcon="user">
             <input
+              id="email"
               type="text"
               nz-input
-              formControlName="userName"
+              formControlName="email"
               placeholder="Nom d'utilisateur"
             />
           </nz-input-group>
@@ -23,6 +25,7 @@
             <input
               type="password"
               nz-input
+              (ngModelChange)="updateConfirmValidator()"
               formControlName="password"
               placeholder="Mot de passe"
             />
@@ -39,7 +42,7 @@
           <a class="login-form-forgot">Mot de passe oublié</a>
         </div>
       </div>
-      <button nz-button nzType="primary" nzShape="round">
+      <button nz-button nzType="primary" nzShape="round" type="submit">
         <span nz-icon nzType="download"></span>
         Connexion
       </button><br/><br/>
