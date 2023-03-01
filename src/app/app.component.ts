@@ -30,9 +30,6 @@ export class AppComponent implements OnInit {
   }
 
   updatePageFullscreen() {
-    if ( this.currentUrl.includes('sign') )
-      this.isFullScreenPage = true;
-    else
-      this.isFullScreenPage = false;
+    this.isFullScreenPage = this.currentUrl.includes('sign');
   }
 }

@@ -12,10 +12,12 @@
     </div>
     <div id="icons">
       <button>
-        <span *ngIf="task?.status == 'Completed'" nz-icon nzType="sort-ascending" nzTheme="outline"></span>
-        <span *ngElse="task?.status == 'Completed'" nz-icon nzType="sort-descending" nzTheme="outline"></span>
-        <div *ngIf="condition; then thenBlock else elseBlock"></div>
-        <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+        <ng-container *ngIf="isAsc; else desc">
+          <span (click)="sortList()" nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+        </ng-container>
+        <ng-template #desc>
+          <span (click)="isAsc = true;" nz-icon nzType="sort-descending" nzTheme="outline"></span>
+        </ng-template>
       </button>
       <button>
         <span nz-icon nzType="filter" nzTheme="outline"></span>
