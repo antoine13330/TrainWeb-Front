@@ -4,7 +4,7 @@
     </div>
     <span id="links-wrapper">
         <ng-container *ngFor="let link of navLinks">
-            <a [routerLink]="link.url" routerLinkActive="router-link-active" >
+            <a *ngIf="link.isAuthorized" [routerLink]="link.url" routerLinkActive="router-link-active" >
                 {{link.name}}
             </a>
         </ng-container>
@@ -15,10 +15,13 @@
         <button nz-button [routerLink]="'sign/in'">
           Connexion
         </button>
-
+        <button nz-button (click)="logout()">
+          DECO
+        </button>
         <button id="sign-up" nz-button [routerLink]="'sign/up'">
           Enregistrement
         </button>
+        <i nz-icon nzType="api" class="prise" nzTheme="twotone" [nzTwotoneColor]="isLoggedIn ?  '#9ad558' : '#ff6464' ">Vert t'es co / Rouge t'es déco</i>
       </div>
     </ng-container>
 </nav>
