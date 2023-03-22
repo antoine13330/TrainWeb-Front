@@ -53,20 +53,7 @@ export class RegisterComponent implements OnInit {
     }
     return {};
   };
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(result=>{
-        this.Router.navigate(['sign/in'])
-      })
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
+
   submitRegisterForm(): void {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe(result=>{
