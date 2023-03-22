@@ -16,12 +16,16 @@
           Connexion
         </button>
         <button nz-button (click)="logout()">
-          DECO
+          Déconnexion
         </button>
         <button id="sign-up" nz-button [routerLink]="'sign/up'">
           Enregistrement
         </button>
-        <i nz-icon nzType="api" class="prise" nzTheme="twotone" [nzTwotoneColor]="isLoggedIn ?  '#9ad558' : '#ff6464' ">Vert t'es co / Rouge t'es déco</i>
+        <button [routerLink]="['profil']" *ngIf="!isDisconnected">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          Mon compte
+        </button>
+        <!-- <i nz-icon nzType="api" class="prise" nzTheme="twotone" [nzTwotoneColor]="isLoggedIn ?  '#9ad558' : '#ff6464' ">Vert t'es co / Rouge t'es déco</i> -->
       </div>
     </ng-container>
 </nav>

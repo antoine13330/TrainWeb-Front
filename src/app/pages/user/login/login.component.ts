@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   email = '';
-
-
+  validateForm!: FormGroup;
+  registerForm!: FormGroup;
 
   constructor(
     private route : ActivatedRoute,
@@ -31,14 +31,7 @@ export class LoginComponent implements OnInit {
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true]
-
     });
-  }
-  validateForm!: FormGroup;
-  registerForm!: FormGroup;
-  updateConfirmValidator(): void {
-    /** wait for refresh value */
-    Promise.resolve().then(() => this.registerForm.controls['checkPassword'].updateValueAndValidity());
   }
 
   submitForm(): void {
@@ -47,6 +40,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.validateForm.value).subscribe({
         next : ( v ) => {
           this._router.navigate(['accueil'])
+          localStorage.setItem('username', this.validateForm.value.email);
         },
         error : (err : HttpErrorResponse ) => {
 
