@@ -4,8 +4,13 @@
       nz-input
       placeholder="Nom de la formation..."
       [(ngModel)]="creatingFormation.name"
+      class="formation-name"
     />
-    <button nz-button (click)="onAddChapitre()">Ajouter un chapitre</button>
+    <div>
+      <button nz-button class="add-chapter-button" (click)="onAddChapitre()">Ajouter un chapitre</button>
+      <button nz-button class="create-description-button" (click)="onAddChapitre()">Créer Description</button>
+
+    </div>
 
 
   </div>
@@ -127,6 +132,8 @@
         [mode]="'teacher'"
       ></tw-formation-content-panel>
     </ng-container>
-    <button nz-button (click)="onAddFormation()">Ajouter la formation</button>
+    <div class="background">
+      <button class="send-formation-button" (click)="onAddFormation()">Envoyer</button>
+    </div>
   </div>
 </section>
