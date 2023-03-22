@@ -5,9 +5,9 @@
   </div>
   <div id="filters">
     <div id="recherche">
-      <input placeholder="Rechercher une formation ...">
+      <input type="text" nz-input [(ngModel)]="searchValue" (input)="searchInList();" placeholder="Rechercher une formation ...">
       <button>
-        <span nz-icon nzType="search" nzTheme="outline"></span>
+        <span (click)="searchInList();" nz-icon nzType="search" nzTheme="outline"></span>
       </button>
     </div>
     <div id="icons">
@@ -20,15 +20,22 @@
         </ng-template>
       </button>
       <button>
-        <span nz-icon nzType="filter" nzTheme="outline"></span>
+        <span (click)="open()"  nz-icon nzType="filter" nzTheme="outline"></span>
       </button>
     </div>
   </div>
-  <ng-container>
-    <p>test</p>
-    <input placeholder="Catégorie">
-  </ng-container>
-  <tw-formation-preview-list></tw-formation-preview-list>
+  <nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    nzTitle="Filter les formations"
+    (nzOnClose)="close()"
+  >
+    <ng-container id="drawer" *nzDrawerContent>
+      <input placeholder="Catégorie">
+    </ng-container>
+  </nz-drawer>
+  <tw-formation-preview-list [sortedFormations]="sortedFormations"></tw-formation-preview-list>
   <div id="up">
     <button>
       <a href="#icons"><span nz-icon nzType="up" nzTheme="outline"></span></a>
