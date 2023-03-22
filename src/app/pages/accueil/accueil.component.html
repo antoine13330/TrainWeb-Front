@@ -13,10 +13,10 @@
     <div id="icons">
       <button>
         <ng-container *ngIf="isAsc; else desc">
-          <span (click)="sortList()" nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+          <span (click)="sortList();" nz-icon nzType="sort-ascending" nzTheme="outline"></span>
         </ng-container>
         <ng-template #desc>
-          <span (click)="isAsc = true;" nz-icon nzType="sort-descending" nzTheme="outline"></span>
+          <span (click)="sortList();" nz-icon nzType="sort-descending" nzTheme="outline"></span>
         </ng-template>
       </button>
       <button>
@@ -24,6 +24,10 @@
       </button>
     </div>
   </div>
+  <ng-container>
+    <p>test</p>
+    <input placeholder="Catégorie">
+  </ng-container>
   <tw-formation-preview-list></tw-formation-preview-list>
   <div id="up">
     <button>

@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/_services/ux/notification.service';
   styleUrls: ['./formation-preview-list.component.sass']
 })
 export class FormationPreviewListComponent implements OnInit {
+  public isAsc : boolean = true;
   formations : Formation[] = [...fakeFormation];
   constructor(
     private router : Router,
@@ -16,11 +17,40 @@ export class FormationPreviewListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.sortList()
   }
 
   onChooseFormation( formation : Formation ) {
     this.notificationService.showNotification("Opening information" , "loading" , "manual");
     this.router.navigate([`formationPreview/${formation.id}`])
+  }
+
+  sortList() {
+    this.isAsc = !this.isAsc;
+    console.log(this.isAsc)
+    if (this.isAsc) {
+      let sortedFormations: Formation[] = this.formations.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
+      console.log(sortedFormations)
+    } else {
+      let sortedFormations: Formation[] = this.formations.sort((a, b) => {
+        if (a.name < b.name) {
+          return 1;
+        }
+        if (a.name > b.name) {
+          return -1;
+        }
+        return 0;
+      });
+      console.log(sortedFormations)
+    }
   }
 
 }
