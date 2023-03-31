@@ -1,1 +1,50 @@
-<p>formation-correction works!</p>
+<section class="page" id="page-formation-correction">
+  <div id="container">
+    <h2 id="trainweb">Correction Formation</h2>
+  </div>
+  <div id="content">
+    <div id="wrapper">
+      <h3 id="title-wrapper">Exercice(s) en attente de correction</h3>
+      <hr>
+      <ul>
+        <li
+        *ngFor="let chap of selectedExo?.name"
+        nz-submenu
+        class="list-item-w-icon"
+        >
+          {{ chap }}
+        </li>
+      </ul>
+    </div>
+    <div id="exoDextails">
+      <div id="nameChap">
+        <h1>Nom exo - Nom étudiants</h1>
+      </div>
+      <div id="main">
+        <div class="scroll" id="question">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed efficitur massa, non dictum felis. Suspendisse ac sapien quis augue imperdiet mattis. Curabitur condimentum orci eget purus fringilla vehicula. Aenean pharetra elit eros, et tempor velit faucibus ac. Vivamus leo ligula, egestas mattis quam vitae, auctor pellentesque ligula. Integer feugiat ut justo vel pellentesque. Nunc tincidunt vulputate fermentum.
+          <br><br>
+          Sed eget sem id tellus auctor suscipit. Nunc nec leo purus. In nec felis ac diam lacinia finibus et in metus. Quisque risus nibh, venenatis sed nulla eget, sodales fermentum velit. Etiam tempor sollicitudin sapien, nec cursus enim. Proin nibh mi, mattis vel sollicitudin quis, efficitur ac ipsum. Fusce dignissim rutrum felis a aliquam. Sed non finibus nisi, et volutpat augue. Nam nibh lacus, ornare nec odio eu, pellentesque dictum leo. Mauris aliquet massa sed augue bibendum pellentesque. Nam at ante nunc. Fusce urna odio, posuere ut placerat ut, accumsan ac orci. Aliquam tincidunt neque ut neque mollis viverra. Pellentesque euismod, diam id sodales sollicitudin, nulla lorem maximus elit, eu sagittis est purus a nisl. Mauris lacinia at quam in consequat. Quisque a risus eget mauris rhoncus feugiat.
+          <br><br>
+          Sed commodo nec lacus vel pulvinar. Maecenas eget tortor leo. Praesent consectetur porta metus at pharetra. In eu quam viverra, lacinia mauris et, ullamcorper diam. Morbi nulla augue, maximus at porttitor quis, interdum et tortor. Suspendisse tincidunt et magna at sodales. Proin dolor nisi, imperdiet eu vulputate ut, egestas interdum tellus. Mauris tincidunt nibh eu orci ultrices pellentesque. Mauris nec auctor augue. Donec sed accumsan leo, suscipit sagittis justo. Quisque elementum massa vel porta finibus. Etiam bibendum dolor sit amet risus porttitor placerat. Sed vel neque vitae nunc facilisis porttitor.
+        </div>
+        <div>
+          <div id="answerForm">
+            <div class="scroll" id="answer">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed efficitur massa, non dictum felis. Suspendisse ac sapien quis augue imperdiet mattis. Curabitur condimentum orci eget purus fringilla vehicula. Aenean pharetra elit eros, et tempor velit faucibus ac. Vivamus leo ligula, egestas mattis quam vitae, auctor pellentesque ligula. Integer feugiat ut justo vel pellentesque. Nunc tincidunt vulputate fermentum.
+              <br><br>
+              Sed eget sem id tellus auctor suscipit. Nunc nec leo purus. In nec felis ac diam lacinia finibus et in metus. Quisque risus nibh, venenatis sed nulla eget, sodales fermentum velit. Etiam tempor sollicitudin sapien, nec cursus enim. Proin nibh mi, mattis vel sollicitudin quis, efficitur ac ipsum. Fusce dignissim rutrum felis a aliquam. Sed non finibus nisi, et volutpat augue. Nam nibh lacus, ornare nec odio eu, pellentesque dictum leo. Mauris aliquet massa sed augue bibendum pellentesque. Nam at ante nunc. Fusce urna odio, posuere ut placerat ut, accumsan ac orci. Aliquam tincidunt neque ut neque mollis viverra. Pellentesque euismod, diam id sodales sollicitudin, nulla lorem maximus elit, eu sagittis est purus a nisl. Mauris lacinia at quam in consequat. Quisque a risus eget mauris rhoncus feugiat.
+              <br><br>
+              Sed commodo nec lacus vel pulvinar. Maecenas eget tortor leo. Praesent consectetur porta metus at pharetra. In eu quam viverra, lacinia mauris et, ullamcorper diam. Morbi nulla augue, maximus at porttitor quis, interdum et tortor. Suspendisse tincidunt et magna at sodales. Proin dolor nisi, imperdiet eu vulputate ut, egestas interdum tellus. Mauris tincidunt nibh eu orci ultrices pellentesque. Mauris nec auctor augue. Donec sed accumsan leo, suscipit sagittis justo. Quisque elementum massa vel porta finibus. Etiam bibendum dolor sit amet risus porttitor placerat. Sed vel neque vitae nunc facilisis porttitor.
+            </div>
+            <div id="boutonChoix">
+              <button nz-button>Valider</button>
+              <button nz-button>Corriger</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

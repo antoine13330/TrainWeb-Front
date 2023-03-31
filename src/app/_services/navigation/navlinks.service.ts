@@ -27,6 +27,13 @@ export class NavlinksService {
       authorization : 1,
       isAuthorized : false
     } ,
+
+    {
+      name : 'Corrections',
+      url : '/formationCorrection',
+      authorization : 1,
+      isAuthorized : false
+    } ,
   ]
   constructor() { }
 
