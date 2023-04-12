@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Formation } from 'src/app/_models/Formations/Formation';
 import { fakeFormation } from 'src/assets/fake-db/Formations/formation';
 import { Router } from '@angular/router';
@@ -9,18 +9,19 @@ import { NotificationService } from 'src/app/_services/ux/notification.service';
   styleUrls: ['./formation-preview-list.component.sass']
 })
 export class FormationPreviewListComponent implements OnInit {
-  formations : Formation[] = [...fakeFormation];
+  formations : Formation[] = [];
   constructor(
     private router : Router,
     private notificationService : NotificationService
     ) { }
 
+  @Input() sortedFormations!: Formation[]
   ngOnInit(): void {
+    this.formations = this.sortedFormations
   }
 
   onChooseFormation( formation : Formation ) {
     this.notificationService.showNotification("Opening information" , "loading" , "manual");
     this.router.navigate([`formationPreview/${formation.id}`])
   }
-
 }

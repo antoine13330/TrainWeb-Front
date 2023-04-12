@@ -6,6 +6,7 @@ import { Exo } from 'src/app/_models/Exos/Exo';
 import { Formation } from 'src/app/_models/Formations/Formation';
 import { NotificationService } from 'src/app/_services/ux/notification.service';
 import { fakeFormation } from 'src/assets/fake-db/Formations/formation';
+import {FormationService} from "../../../_services/formation.service";
 
 @Component({
   selector: 'tw-formation-create',
@@ -29,8 +30,9 @@ export class FormationCreatePageComponent implements OnInit {
   }
   constructor(
     private notificationService : NotificationService,
-    private router : Router
-    ) {  }
+    private router : Router,
+    private formationService: FormationService,
+  ) {  }
 
   ngOnInit(): void {
     this.onAddChapitre();

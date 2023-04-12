@@ -11,17 +11,19 @@
     </span>
 
     <ng-container>
-      <div id="nav-button">
+      <div *ngIf="isLoggedIn" id="nav-button-connected">
+        <span>Bonjour test</span>
+        <button nz-button (click)="logout()">
+          Déconnexion
+        </button>
+      </div>
+      <div *ngIf="!isLoggedIn" id="nav-button">
         <button nz-button [routerLink]="'sign/in'">
           Connexion
-        </button>
-        <button nz-button (click)="logout()">
-          DECO
         </button>
         <button id="sign-up" nz-button [routerLink]="'sign/up'">
           Enregistrement
         </button>
-        <i nz-icon nzType="api" class="prise" nzTheme="twotone" [nzTwotoneColor]="isLoggedIn ?  '#9ad558' : '#ff6464' ">Vert t'es co / Rouge t'es déco</i>
       </div>
     </ng-container>
 </nav>

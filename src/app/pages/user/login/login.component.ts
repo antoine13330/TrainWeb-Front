@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log(this.validateForm.value)
       this.authService.login(this.validateForm.value).subscribe({
         next : ( v ) => {
           this._router.navigate(['accueil'])

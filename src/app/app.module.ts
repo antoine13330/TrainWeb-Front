@@ -23,7 +23,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormationContentPanelComponent } from './component/formation/formation-content-panel/formation-content-panel.component';
 import { FormationPreviewPageComponent } from './pages/formation/formation-preview/formation-preview.component';
@@ -40,6 +40,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { MesFormationsComponent } from './component/formation/mes-formations/mes-formations.component';
 import { NavbarBComponent } from './component/navbar/navbar-b/navbar-b.component';
 import { RegisterComponent } from './pages/user/register/register.component';
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {AuthInterceptor} from "./_helpers/auth.interceptor";
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -63,29 +65,31 @@ registerLocaleData(fr);
     NavbarBComponent,
     RegisterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NzListModule,
-    NzMenuModule,
-    NzMessageModule,
-    NzProgressModule,
-    NzInputModule,
-    NzButtonModule,
-    NzIconModule,
-    NzPopconfirmModule,
-    NzToolTipModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzCheckboxModule,
-    NzCardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        CommonModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NzListModule,
+        NzMenuModule,
+        NzMessageModule,
+        NzProgressModule,
+        NzInputModule,
+        NzButtonModule,
+        NzIconModule,
+        NzPopconfirmModule,
+        NzToolTipModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        NzCheckboxModule,
+        NzCardModule,
+        NzDrawerModule
+    ],
   providers: [
-    { provide: NZ_I18N, useValue: fr_FR }
+    { provide: NZ_I18N, useValue: fr_FR },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

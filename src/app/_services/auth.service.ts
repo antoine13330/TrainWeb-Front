@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, observable, Observable, tap} from 'rxjs';
 import {environment} from "../../environments/environment";
@@ -8,7 +8,7 @@ import {UserToken} from "../_models/User/token";
 const AUTH_API = 'http://localhost:3000/api/user/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -17,29 +17,28 @@ const httpOptions = {
 
 export class AuthService {
   private userToken: UserToken | undefined;
-  constructor(private httpClient: HttpClient)
-  {
+
+  constructor(private httpClient: HttpClient) {
     this.checkJwt()
   }
+
   //Fonction register
-  register(data: any)
-  {
+  register(data: any) {
     const signUpUser = {
-      user : data
+      user: data
     };
-    return new Observable<boolean>((observer)=>{
-      this.httpClient.post(environment.baseUrl + '/users/student/create', signUpUser).subscribe(result=>{
+    return new Observable<boolean>((observer) => {
+      this.httpClient.post(environment.baseUrl + '/users/student/create', signUpUser).subscribe(result => {
         observer.next(true);
         observer.complete();
       })
     })
   }
-  checkJwt()
-  {
-      if(!this.isTokenExpired())
-      {
-        this.isLoggedOn = true
-      }
+
+  checkJwt() {
+    if (!this.isTokenExpired()) {
+      this.isLoggedOn = true
+    }
   }
 
   isTokenExpired(): boolean {
@@ -62,9 +61,17 @@ export class AuthService {
   private urlBase64Decode(str: string) {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
     switch (output.length % 4) {
-      case 0: { break; }
-      case 2: { output += '=='; break; }
-      case 3: { output += '='; break; }
+      case 0: {
+        break;
+      }
+      case 2: {
+        output += '==';
+        break;
+      }
+      case 3: {
+        output += '=';
+        break;
+      }
       default: {
         throw new Error('Illegal base64url string!');
       }
@@ -77,43 +84,43 @@ export class AuthService {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
   }
+
   //Recuperer le jwt Token
-  getJwtToken() : string | null {
+  getJwtToken(): string | null {
     return localStorage.getItem('JWT-TOKEN');
   }
 
   //Fonction est connecté
-  private _isLoggedOn : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private set isLoggedOn(v : boolean) {
+  private _isLoggedOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  set isLoggedOn(v: boolean) {
     this._isLoggedOn.next(v);
   }
+
   isLoggedOn$ = this._isLoggedOn.asObservable();
 
   //Fonction de login
-  login(data : any) {
+  login(data: any) {
     const signInUser = {
       user: data
     };
     return this.httpClient.post<any>(environment.baseUrl + '/users/login', signInUser).pipe(
-        tap( token => {
-          this.isLoggedOn = true;
-          this.setJwtToken({
-            idUser : token.createdToken.idUser,
-            token : token.createdToken.token,
-            expirationDate : token.createdToken.expirationDate
-          } as UserToken);
-        })
-      )
-        ;
+      tap(token => {
+        this.isLoggedOn = true;
+        this.setJwtToken({
+          idUser: token.createdToken.idUser,
+          token: token.createdToken.token,
+          expirationDate: token.createdToken.expirationDate
+        } as UserToken);
+      })
+    );
   }
-  logout()
-  {
+
+  logout() {
     localStorage.removeItem("JWT-TOKEN")
     this.isLoggedOn = false;
   }
-  setJwtToken(token : UserToken)
-  {
+
+  setJwtToken(token: UserToken) {
     localStorage.setItem("JWT-TOKEN", token.token);
   }
 }
-
