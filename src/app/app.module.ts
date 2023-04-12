@@ -40,6 +40,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { MesFormationsComponent } from './component/formation/mes-formations/mes-formations.component';
 import { NavbarBComponent } from './component/navbar/navbar-b/navbar-b.component';
 import { RegisterComponent } from './pages/user/register/register.component';
+import { FormationDescriptionContentPanelComponent } from './component/formation/formation-description-content-panel/formation-description-content-panel.component';
+import {NzTypographyModule} from "ng-zorro-antd/typography";
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -62,28 +64,30 @@ registerLocaleData(fr);
     MesFormationsComponent,
     NavbarBComponent,
     RegisterComponent,
+    FormationDescriptionContentPanelComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NzListModule,
-    NzMenuModule,
-    NzMessageModule,
-    NzProgressModule,
-    NzInputModule,
-    NzButtonModule,
-    NzIconModule,
-    NzPopconfirmModule,
-    NzToolTipModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzCheckboxModule,
-    NzCardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        CommonModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NzListModule,
+        NzMenuModule,
+        NzMessageModule,
+        NzProgressModule,
+        NzInputModule,
+        NzButtonModule,
+        NzIconModule,
+        NzPopconfirmModule,
+        NzToolTipModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        NzCheckboxModule,
+        NzCardModule,
+        NzTypographyModule
+    ],
   providers: [
     { provide: NZ_I18N, useValue: fr_FR }
   ],

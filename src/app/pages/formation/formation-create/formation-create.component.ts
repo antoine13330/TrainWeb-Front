@@ -30,6 +30,7 @@ export class FormationCreatePageComponent implements OnInit {
   constructor(
     private notificationService : NotificationService,
     private router : Router
+    // editDescription: false
     ) {  }
 
   ngOnInit(): void {
@@ -115,6 +116,19 @@ export class FormationCreatePageComponent implements OnInit {
   }
   onCancelRenameExo(exo: Exo){
     exo.editMode= false;
+  }
+
+  editDescription:boolean = false
+  bite(event:boolean){
+    this.editDescription = event
+  }
+  changeDescription(event:string){
+    this.creatingFormation.description = event
+    console.log(this.creatingFormation.description, ' : dans page create chapter')
+  }
+
+  zizi(){
+    this.editDescription = true
   }
 
   }
