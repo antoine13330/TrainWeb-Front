@@ -5,6 +5,7 @@ import {environment} from "../../../environments/environment";
 import {AuthService} from "../../_services/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {FormationService} from "../../_services/formation.service";
+import {log} from "ng-zorro-antd/core/logger";
 
 @Component({
   selector: 'tw-accueil',
@@ -14,35 +15,44 @@ import {FormationService} from "../../_services/formation.service";
 export class AccueilPageComponent implements OnInit {
   public isAsc : boolean = false;
   visible = false;
-  formations : Formation[] = [...fakeFormation];
+  formations : Formation[] = [];
   sortedFormations : Formation[] = [];
   searchValue: string = '';
+  public data: any;
 
   constructor(
     private authService: AuthService,
     private httpClient: HttpClient,
     private formationService: FormationService,
-  ) {}
+  ) {
+    this.formationService.getAllFormations().subscribe(
+      (response) => {
+        this.formations = this.sortedFormations = response.map((data: any) => data)
+        log(this.formations)
+        log(this.sortedFormations)
+      }
+    );
+    this.sortList()
+  }
 
   ngOnInit(): void {
-    this.sortList()
-    this.formationService.getAllFormations().subscribe((data) => {
-      console.log(data)})
   }
 
   sortList() {
     this.isAsc = !this.isAsc;
+    log(this.formations)
     if (this.isAsc) {
       this.sortedFormations = this.formations.sort((a, b) => a.name.localeCompare(b.name))
     } else {
       this.sortedFormations = this.formations.sort((a, b) => b.name.localeCompare(a.name))
 
     }
+    console.log(this.sortedFormations)
   }
 
   searchInList() {
     setTimeout(() => {
-      //this.formations.find(this.findFormations)
+      this.formations.find(this.findFormations)
 
       console.log(this.searchValue)
     }, 1000)

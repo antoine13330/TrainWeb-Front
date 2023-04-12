@@ -24,10 +24,7 @@ export class NavbarAComponent implements OnInit {
       this.navLinks.map( l => {
         if ( loggedIn )
           l.isAuthorized = true;
-        else if ( l.authorization === 0 )
-          l.isAuthorized = true;
-        else
-          l.isAuthorized = false;
+        else l.isAuthorized = l.authorization === 0;
         return l;
       })
     })
