@@ -66,7 +66,7 @@
                 nz-button
 
                 nz-tooltip
-                :nzTooltipTitle="renomer l'exercice"
+                :nzTooltipTitle="renommer l'exercice"
                 nzTooltipPlacement="top"
                 nzType="default"
                 (click)="onRenameExo(exo)"
@@ -90,13 +90,13 @@
           </ng-container>
           <ng-template #editMode>
             <input type="text" [(ngModel)]="exo.tempName" nz-input
-            class="rename-input" placeholder="Renomer :"
+            class="rename-input" placeholder="Renommer :"
             />
             <button
             nz-button
 
             nz-tooltip
-            :nzTooltipTitle="Anuler la modification"
+            :nzTooltipTitle="Annuler la modification"
             nzTooltipPlacement="top"
             nzType="default"
             (click)="onCancelRenameExo(exo)"
@@ -108,7 +108,7 @@
             nz-button
 
             nz-tooltip
-            :nzTooltipTitle="Renomer l'exercice"
+            :nzTooltipTitle="Renommer l'exercice"
             nzTooltipPlacement="top"
             nzType="default"
             (click)="onValideRenameExo(exo)"
