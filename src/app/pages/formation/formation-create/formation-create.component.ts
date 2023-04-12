@@ -119,7 +119,7 @@ export class FormationCreatePageComponent implements OnInit {
   }
 
   editDescription:boolean = false
-  bite(event:boolean){
+  hasSelect(event:boolean){
     this.editDescription = event
   }
   changeDescription(event:string){
@@ -127,7 +127,7 @@ export class FormationCreatePageComponent implements OnInit {
     console.log(this.creatingFormation.description, ' : dans page create chapter')
   }
 
-  zizi(){
+  createDescription(){
     this.editDescription = true
   }
 

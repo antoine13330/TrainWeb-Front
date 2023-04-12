@@ -7,7 +7,7 @@
       class="formation-name"
     />
     <div>
-      <button nz-button class="create-description-button" (click)="zizi()">Créer Description</button>
+      <button nz-button class="create-description-button" (click)="createDescription()">Créer Description</button>
       <button nz-button class="add-chapter-button" (click)="onAddChapitre()">Ajouter un chapitre</button>
 
     </div>
@@ -126,7 +126,7 @@
     <ng-container *ngIf="editDescription">
       <app-formation-description-content-panel
         [mode]="'teacher'"
-        (asselect)="bite($event)"
+        (asselect)="hasSelect($event)"
         (sendDescription)="changeDescription($event)"
       ></app-formation-description-content-panel>
     </ng-container>
