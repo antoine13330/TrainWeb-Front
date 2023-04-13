@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Exo } from 'src/app/_models/Exos/Exo';
 import { Formation } from 'src/app/_models/Formations/Formation';
+import {FormationUserProgressService} from "../../../_services/formationProgress/formation-user-progress.service";
 
 @Component({
   selector: 'tw-formation-component',
@@ -11,7 +12,9 @@ import { Formation } from 'src/app/_models/Formations/Formation';
 export class FormationComponent implements OnInit {
   formation! : Formation;
   choosenExo : Exo | null = null;
-  constructor() {  
+  constructor(
+    private formaProgressService: FormationUserProgressService
+  ) {
     this.formation = (  JSON.parse(history.state.formation) as Formation );
   }
 
@@ -21,4 +24,5 @@ export class FormationComponent implements OnInit {
   onSelectExo(exo : Exo) {
     this.choosenExo = exo;
   }
+
 }

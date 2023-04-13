@@ -84,11 +84,11 @@ export class AuthService {
 
   //Fonction est connecté
   private _isLoggedOn : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private set isLoggedOn(v : boolean) {
+  set isLoggedOn(v : boolean) {
     this._isLoggedOn.next(v);
   }
   isLoggedOn$ = this._isLoggedOn.asObservable();
-
+  userLoginId: string | undefined;
   //Fonction de login
   login(data : any) {
     const signInUser = {
@@ -96,6 +96,7 @@ export class AuthService {
     };
     return this.httpClient.post<any>(environment.baseUrl + '/users/login', signInUser).pipe(
         tap( token => {
+          this.userLoginId = token.createdToken.idUser
           this.isLoggedOn = true;
           this.setJwtToken({
             idUser : token.createdToken.idUser,
@@ -106,6 +107,7 @@ export class AuthService {
       )
         ;
   }
+
   logout()
   {
     localStorage.removeItem("JWT-TOKEN")
@@ -115,5 +117,6 @@ export class AuthService {
   {
     localStorage.setItem("JWT-TOKEN", token.token);
   }
+
 }
 

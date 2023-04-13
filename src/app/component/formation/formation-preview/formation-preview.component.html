@@ -4,7 +4,7 @@
             <h2 id="nom"> {{ openedFormation!.name }} </h2>
             <p> {{ openedFormation!.description }} </p>
 
-            <button (click)="onStartFormation()">Debuter la formation </button>
+            <button *ngIf="isLoggedIn" (click)="onStartFormation()">Debuter la formation </button>
         </div>
     </ng-container>
 </section>
