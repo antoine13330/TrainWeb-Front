@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AccueilPageComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   public username: any;
 

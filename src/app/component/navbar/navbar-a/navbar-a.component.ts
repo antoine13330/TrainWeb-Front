@@ -43,6 +43,7 @@ export class NavbarAComponent implements OnInit {
   public logout()
   {
     this._authService.logout();
+    this.isLoggedIn = false;
     this.isDisconnected = true;
   }
 }

@@ -23,7 +23,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormationContentPanelComponent } from './component/formation/formation-content-panel/formation-content-panel.component';
 import { FormationPreviewPageComponent } from './pages/formation/formation-preview/formation-preview.component';
@@ -40,6 +40,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { MesFormationsComponent } from './component/formation/mes-formations/mes-formations.component';
 import { NavbarBComponent } from './component/navbar/navbar-b/navbar-b.component';
 import { RegisterComponent } from './pages/user/register/register.component';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ registerLocaleData(fr);
     NzCardModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: fr_FR }
+    { provide: NZ_I18N, useValue: fr_FR },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

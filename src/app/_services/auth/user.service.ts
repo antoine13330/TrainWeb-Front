@@ -20,8 +20,6 @@ export class UserService {
   ) { 
   }
 
-
-
   getUserConnexion() {
     // requeter api pour checker le token si tocken il y a
     const isConnected = false;
@@ -32,7 +30,4 @@ export class UserService {
       this.router.navigate(['/login'])
     }
   }
-
-
-
 }
