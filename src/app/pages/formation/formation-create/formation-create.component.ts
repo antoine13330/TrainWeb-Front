@@ -117,5 +117,17 @@ export class FormationCreatePageComponent implements OnInit {
     exo.editMode= false;
   }
 
+  editDescription:boolean = false
+  hasSelect(event:boolean){
+    this.editDescription = event
+  }
+  changeDescription(event:string){
+    this.creatingFormation.description = event
+  }
+
+  createDescription(){
+    this.editDescription = true
+  }
+
   }
 

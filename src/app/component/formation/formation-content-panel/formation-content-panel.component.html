@@ -6,12 +6,12 @@
                 <div>
                     <textarea disabled nz-input [(ngModel)]="item.content"></textarea>
                 </div>
-                <input nz-input type="text" [(ngModel)]="item.answer"/>
+                <input nz-input type="text" class="textefield" [(ngModel)]="item.answer"/>
             </div>
             <div *ngSwitchCase="1">
                 <!-- edit mode -->
                 <div>
-                    <textarea nz-input [(ngModel)]="item.content"></textarea>
+                    <textarea nz-input class="textefield" [(ngModel)]="item.content"></textarea>
                 </div>
             </div>
             <div *ngSwitchDefault>

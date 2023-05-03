@@ -4,9 +4,13 @@
       nz-input
       placeholder="Nom de la formation..."
       [(ngModel)]="creatingFormation.name"
+      class="formation-name"
     />
-    <button nz-button (click)="onAddChapitre()">Ajouter un chapitre</button>
+    <div>
+      <button nz-button class="create-description-button" (click)="createDescription()">Créer Description</button>
+      <button nz-button class="add-chapter-button" (click)="onAddChapitre()">Ajouter un chapitre</button>
 
+    </div>
 
   </div>
 
@@ -58,43 +62,42 @@
             *ngIf="!exo.editMode; else editMode"
             >
             <span> {{ exo.name }} </span>
+              <button
+                nz-button
+
+                nz-tooltip
+                :nzTooltipTitle="renommer l'exercice"
+                nzTooltipPlacement="top"
+                nzType="default"
+                (click)="onRenameExo(exo)"
+
+              >
+                <span nz-icon nzType="edit" nzTheme="outline"></span>
+              </button>
 
               <button
-              nz-button
-              nzDanger
-              nzGhost
-              nz-tooltip
-              nzTooltipTitle="Supprimer l'exercice"
-              nzTooltipPlacement="left"
-              nzType="dashed"
-              (click)="onDeleteExo(exo, chap)"
-            >
-              <span nz-icon nzType="delete" nzTheme="outline"></span>
-            </button>
-
-            <button
-              nz-button
-
-              nz-tooltip
-              :nzTooltipTitle="renomer l'exercice"
-              nzTooltipPlacement="right"
-              nzType="default"
-              (click)="onRenameExo(exo)"
-
-            >
-              <span nz-icon nzType="edit" nzTheme="outline"></span>
-            </button>
+                nz-button
+                nzDanger
+                nzGhost
+                nz-tooltip
+                nzTooltipTitle="Supprimer l'exercice"
+                nzTooltipPlacement="top"
+                nzType="dashed"
+                (click)="onDeleteExo(exo, chap)"
+              >
+                <span nz-icon nzType="delete" nzTheme="outline"></span>
+              </button>
           </ng-container>
           <ng-template #editMode>
             <input type="text" [(ngModel)]="exo.tempName" nz-input
-            class="rename-input" placeholder="Renomer :"
+            class="rename-input" placeholder="Renommer :"
             />
             <button
             nz-button
 
             nz-tooltip
-            :nzTooltipTitle="Anuler la modification"
-            nzTooltipPlacement="left"
+            :nzTooltipTitle="Annuler la modification"
+            nzTooltipPlacement="top"
             nzType="default"
             (click)="onCancelRenameExo(exo)"
 
@@ -105,8 +108,8 @@
             nz-button
 
             nz-tooltip
-            :nzTooltipTitle="Renomer l'exercice"
-            nzTooltipPlacement="right"
+            :nzTooltipTitle="Renommer l'exercice"
+            nzTooltipPlacement="top"
             nzType="default"
             (click)="onValideRenameExo(exo)"
 
@@ -120,6 +123,14 @@
         </ul>
       </li>
     </ul>
+    <ng-container *ngIf="editDescription">
+      <app-formation-description-content-panel
+        [mode]="'teacher'"
+        (asselect)="hasSelect($event)"
+        (sendDescription)="changeDescription($event)"
+      ></app-formation-description-content-panel>
+    </ng-container>
+
     <ng-container *ngIf="selectedExo">
       <tw-formation-content-panel
         [item]="selectedExo"
@@ -127,6 +138,8 @@
         [mode]="'teacher'"
       ></tw-formation-content-panel>
     </ng-container>
-    <button nz-button (click)="onAddFormation()">Ajouter la formation</button>
+    <div class="background">
+      <button class="send-formation-button" (click)="onAddFormation()">Créer la formation</button>
+    </div>
   </div>
 </section>
